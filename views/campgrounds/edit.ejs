@@ -2,10 +2,11 @@
     <div class="row">
         <h1 class="text-center">Edit Campground</h1>
         <div class="col-6 offset-3">
-            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+            <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" class="needs-validation"
+                novalidate>
                 <div class="mb-3">
                     <label class="form-lable" for="title">Title</label>
-                    <input class="form-control" type="text" id="title" name="campground[title]" 
+                    <input class="form-control" type="text" id="title" name="campground[title]"
                         value="<%= campground.title %>" required>
                     <div class="valid-feedback">
                         Looks good!
@@ -13,7 +14,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-lable" for="Location">Location</label>
-                    <input class="form-control" type="text" id="Location" name="campground[location]" 
+                    <input class="form-control" type="text" id="Location" name="campground[location]"
                         value="<%= campground.location %>" required>
                     <div class="valid-feedback">
                         Looks good!
@@ -21,8 +22,8 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-lable" for="image">Image Url</label>
-                    <input class="form-control" type="text" id="image" name="campground[image]" 
-                    value="<%= campground.image %>" required>
+                    <input class="form-control" type="text" id="image" name="campground[image]"
+                        value="<%= campground.image %>" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
@@ -31,16 +32,17 @@
                     <label class="form-lable" for="price">Price</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-lable">$</span>
-                        <input type="text" class="form-control" id="price" placeholder="0.0" aria-label="price" 
-                        aria-describedby="price-lable" name="campground[price]" value="<%= campground.price %>" required>
+                        <input type="text" class="form-control" id="price" placeholder="0.0" aria-label="price"
+                            aria-describedby="price-lable" name="campground[price]" value="<%= campground.price %>"
+                            required>
                         Looks good!
-                      </div>
+                    </div>
                 </div>
-    
+
                 <div class="mb-3">
                     <label class="form-lable" for="description">Description Url</label>
-                    <textarea class="form-control" type="text" id="description" name="campground[description]" 
-                    required><%= campground.description %></textarea>
+                    <textarea class="form-control" type="text" id="description" name="campground[description]"
+                        required><%= campground.description %></textarea>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
