@@ -28,9 +28,18 @@ const seedDB = async () => {
             author: '66c4ab424fbabd1f4315230b',
             location: `${cities[random1000].city}, ${cities[random1000].state}`,
             title: `${sample(descriptors)} ${sample(places)}`,
-            image: 'https://www.pexels.com/photo/1061640/download/?search_query=camping&tracking_id=srh8l89fjd',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam dolores vero perferendis laudantium, consequuntur voluptatibus nulla architecto, sit soluta esse iure sed labore ipsam a cum nihil atque molestiae deserunt!',
-            price
+            price,
+            images:  [
+                {
+                url: 'https://res.cloudinary.com/dab0hbydj/image/upload/v1726169085/TentTribe/bhli62mwgn4lhtopmifg.jpg',
+                filename: 'TentTribe/bhli62mwgn4lhtopmifg',
+                },
+                {
+                url: 'https://res.cloudinary.com/dab0hbydj/image/upload/v1726169093/TentTribe/mmmcohhfxtvkwc4jigyo.jpg',
+                filename: 'TentTribe/mmmcohhfxtvkwc4jigyo',
+                }
+            ]
         })
         await camp.save();
     }
