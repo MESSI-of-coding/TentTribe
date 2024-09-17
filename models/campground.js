@@ -14,7 +14,7 @@ ImageSchema.virtual('thumbnail').get(function() {
 const opts = { toJSON: { virtuals: true } };
 
 const CampgroundSchema = new Schema({
-    title: [String],
+    title: String,
     images : [ImageSchema],
     geometry: {
         type: {
@@ -28,8 +28,8 @@ const CampgroundSchema = new Schema({
         }
     },
     price : Number,
-    description : [String],
-    location : [String],
+    description : String,
+    location : String,
     author: {
         type: Schema.Types.ObjectId,
         ref: "User"
