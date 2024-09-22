@@ -1,5 +1,6 @@
 maptilersdk.config.apiKey = maptilerApiKey;
 
+
 const map = new maptilersdk.Map({
     container: 'map',
     style: maptilersdk.MapStyle.BRIGHT,

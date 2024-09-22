@@ -6,7 +6,6 @@ const { isLoggedIn, isAuthor, validateCampground } = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
-
 const Campground = require('../models/campground');
 
 router.route('/')
@@ -22,7 +21,5 @@ router.route('/:id')
     .delete(isLoggedIn, isAuthor, catchAsync(campgrounds.deleteCampground));
 
 router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditForm))
-
-
 
 module.exports = router;

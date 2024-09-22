@@ -14,18 +14,17 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const helmet = require('helmet');
-
 const mongoSanitize = require('express-mongo-sanitize');
-
-
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
-const { name } = require('ejs');
+const MongoStore = require('connect-mongo');
 
-mongoose.connect('mongodb://127.0.0.1:27017/tent-tribe', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/tent-tribe';
+
+mongoose.connect(dbUrl, {
+   // useNewUrlParser: true,
+    //useUnifiedTopology: true,
     //useCreateIndex: true
     //useFindAndModify: false
 });
@@ -48,10 +47,24 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize({
     replaceWith: '_'
 }))
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret
+    }
+});
+
+store.on("error", function(e){
+    console.log("Session Store Error", e)
+})
 
 const sessionConfig = {
+    store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -71,7 +84,7 @@ const scriptSrcUrls = [
     "https://kit.fontawesome.com/",
     "https://cdnjs.cloudflare.com/",
     "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/", // add this
+    "https://cdn.maptiler.com/", 
 ];
 const styleSrcUrls = [
     "https://kit-free.fontawesome.com/",
@@ -79,10 +92,10 @@ const styleSrcUrls = [
     "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net",
-    "https://cdn.maptiler.com/", // add this
+    "https://cdn.maptiler.com/", 
 ];
 const connectSrcUrls = [
-    "https://api.maptiler.com/", // add this
+    "https://api.maptiler.com/", 
 ];
 
 const fontSrcUrls = [];
@@ -143,6 +156,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', {err});
 })
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
 });
