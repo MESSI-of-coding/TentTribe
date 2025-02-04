@@ -9,7 +9,7 @@ This project was created using Node.js, Express, MongoDB, and Bootstrap. Passpor
 - Everyone can view the camps and reviews without signing up or logging in.
 - The user will have to login to edit the campground details or any comments.
 - The user can only edit/delete the campgrounds and comments that they have added.
-- All the data will pe persistent and is stored in the awazon cloud.
+- All the data will pe persistent and is stored in the amazon cloud.
 
 ## Demo
 
